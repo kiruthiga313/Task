@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const authController = require('../controllers/auth.controller')
-const movieController = require('../controllers/movie.controller')
 const middleware = require('../middlewares/common')
 
 
@@ -29,30 +28,7 @@ router.get('/dashboard',  isLoggedIn,(req, res ) => {
     res.render('dashboard', { req: req });
 })
 
-router.get('/movie',  isLoggedIn,(req, res ) => {
-    movieController.listMovie(req,res);
-})
 
-
-router.get('/addMovie',isLoggedIn,(req,res)=> {
-    movieController.addMovie(req,res);
-})
-
-router.post('/createMovie',isLoggedIn,(req,res)=> {
-    movieController.createMovie(req,res);
-})
-
-router.get('/editMovie/:id', isLoggedIn,(req, res) => {
-    movieController.getMovie(req, res);
-})
-
-router.get('/deleteMovie/:id', isLoggedIn,(req, res) => {
-    movieController.deleteMovie(req, res);
-})
-
-router.post('/updateMovie',isLoggedIn,(req,res)=> {
-    movieController.updateMovie(req,res);
-})
 
 
 

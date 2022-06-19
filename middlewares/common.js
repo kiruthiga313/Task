@@ -55,35 +55,9 @@ passport.deserializeUser(function (login, done) {
 
 
 
-function upload(destinationPath) {
-    if (!fs.existsSync(destinationPath)) {
-        fs.mkdirSync(destinationPath, { recursive: true })
-    }
-
-    let storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, destinationPath)
-        },
-        filename: function (req, file, cb) {
-            cb(null, Date.now().toString() + '_' + file.originalname)
-        }
-    });
-
-    let uploaded = multer({
-        storage: storage,
-        limits: {
-            fileSize: (5000 * 1024)
-        }
-    })
-    return uploaded;
-}
 
 
 
 
 
-module.exports = {
-    upload: upload,
-    // admin: admin
 
-}
